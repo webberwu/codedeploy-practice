@@ -13,7 +13,7 @@ deploy:
       secure: $aws_secret_key
     local_dir: dpl_cd_upload
     skip_cleanup: true
-    region: us-west-2
+    region: us-east-2
     on:
       branch: master
     bucket: "webber-0608-codeploy"
@@ -25,6 +25,6 @@ deploy:
     key: latest.zip
     application: webber-0608
     deployment_group: master
-    region: us-west-2
+    region: us-east-2
     on:
       branch: master
