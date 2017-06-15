@@ -1,0 +1,29 @@
+language: php
+os:
+- linux
+before_deploy:
+  - zip -r latest *
+  - test -d dpl_cd_upload || mkdir dpl_cd_upload
+  - mv latest.zip dpl_cd_upload/latest.zip
+deploy:
+  - provider: s3
+    access_key_id: $aws_access_key
+    secret_access_key:
+      secure: $aws_secure_key
+    local_dir: dpl_cd_upload
+    skip_cleanup: true
+    region: us-west-2
+    on:
+      branch: master
+    bucket: "webber-0608-codeploy"
+  - provider: codedeploy
+    access_key_id: $aws_access_key
+    secret_access_key:
+      secure: $aws_secure_key
+    bucket: "webber-0608-codeploy"
+    key: latest.zip
+    application: webber-0608
+    deployment_group: master
+    region: us-west-2
+    on:
+      branch: master
