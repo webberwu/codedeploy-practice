@@ -1,3 +1,3 @@
 <?php
+echo 'yoyoyo! ';
 echo gethostname();
-phpinfo();
