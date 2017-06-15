@@ -10,7 +10,7 @@ deploy:
   - provider: s3
     access_key_id: $aws_access_key
     secret_access_key:
-      secure: $aws_secure_key
+      secure: $aws_secret_key
     local_dir: dpl_cd_upload
     skip_cleanup: true
     region: us-west-2
@@ -20,7 +20,7 @@ deploy:
   - provider: codedeploy
     access_key_id: $aws_access_key
     secret_access_key:
-      secure: $aws_secure_key
+      secure: $aws_secret_key
     bucket: "webber-0608-codeploy"
     key: latest.zip
     application: webber-0608
